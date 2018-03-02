@@ -40,7 +40,7 @@ public class GUIPaginaInicioController implements Initializable {
     @FXML
     private JFXDrawer drawerPaginaInicio;
 
-    
+    //XCV
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODOHOLA
