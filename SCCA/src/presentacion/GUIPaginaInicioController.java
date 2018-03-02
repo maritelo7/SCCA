@@ -43,7 +43,8 @@ public class GUIPaginaInicioController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        // TODOHOLA
+        //HOLL d enuevo
     }    
     
 }
