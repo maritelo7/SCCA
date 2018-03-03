@@ -6,11 +6,13 @@
 package presentacion;
 
 import java.net.URL;
+import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import logica.AlumnoDAO;
 
 /**
  * FXML Controller class
@@ -47,6 +49,8 @@ public class GUIRegistrarAlumnoController implements Initializable {
     private Button botonAceptar;
     @FXML
     private Button botonCancelar;
+    
+    AlumnoDAO alumno = null;
 
     
     @Override
@@ -54,17 +58,24 @@ public class GUIRegistrarAlumnoController implements Initializable {
         
     }   
     
-    public void obtenerInformación(){
-        String nombre;
-        String apellidoPat;
-        String apellidoMat;
-        String matricula;
-        String carrera;
-        String area;
-        String correo;
-        String telefono;
-        String genero;
+    public AlumnoDAO obtenerInformación(){
+        String nombre = textNombre.getText();
+        String apellidoPat = textApellidoPat.getText();
+        String apellidoMat = textApellidoMat.getText();
+        String matricula = textMatricula.getText();
+        String carrera = textCarrera.getText();
+        String area = textArea.getText();
+        String correo = textCorreo.getText();
+        String telefono = textTelefono.getText();
+        String genero = textGenero.getText();
+        Date fechaNac = obtenerFechaNac();
+        alumno = new AlumnoDAO(nombre, apellidoPat, apellidoMat, fechaNac, matricula,
+                carrera, area, correo, telefono, genero);
         
+        return alumno;
+     }
+    
+    public Date obtenerFechaNac(){
         
     }
     
