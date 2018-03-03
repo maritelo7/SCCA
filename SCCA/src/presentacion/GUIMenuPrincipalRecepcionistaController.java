@@ -8,6 +8,7 @@ package presentacion;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
+import logica.Recepcionista;
 
 /**
  * FXML Controller class
@@ -15,7 +16,7 @@ import javafx.fxml.Initializable;
  * @author marianacro
  */
 public class GUIMenuPrincipalRecepcionistaController implements Initializable {
-
+Recepcionista recepcionista;
     /**
      * Initializes the controller class.
      */
@@ -23,5 +24,9 @@ public class GUIMenuPrincipalRecepcionistaController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+    
+    public void cargarCuenta(Recepcionista recepcionista) {
+      this.recepcionista = recepcionista;
+   }
     
 }
