@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package persistencia.controlladores;
+package persistencia.controladores;
 
 import java.io.Serializable;
 import java.util.List;
@@ -13,17 +13,17 @@ import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import persistencia.ObservacionGeneral;
+import persistencia.Bitacora;
 import persistencia.Seguimiento;
-import persistencia.controlladores.exceptions.NonexistentEntityException;
+import persistencia.controladores.exceptions.NonexistentEntityException;
 
 /**
  *
  * @author marianacro
  */
-public class ObservacionGeneralJpaController implements Serializable {
+public class BitacoraJpaController implements Serializable {
 
-    public ObservacionGeneralJpaController(EntityManagerFactory emf) {
+    public BitacoraJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
     private EntityManagerFactory emf = null;
@@ -32,19 +32,19 @@ public class ObservacionGeneralJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(ObservacionGeneral observacionGeneral) {
+    public void create(Bitacora bitacora) {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Seguimiento idSeguimiento = observacionGeneral.getIdSeguimiento();
+            Seguimiento idSeguimiento = bitacora.getIdSeguimiento();
             if (idSeguimiento != null) {
                 idSeguimiento = em.getReference(idSeguimiento.getClass(), idSeguimiento.getIdSeguimiento());
-                observacionGeneral.setIdSeguimiento(idSeguimiento);
+                bitacora.setIdSeguimiento(idSeguimiento);
             }
-            em.persist(observacionGeneral);
+            em.persist(bitacora);
             if (idSeguimiento != null) {
-                idSeguimiento.getObservacionGeneralCollection().add(observacionGeneral);
+                idSeguimiento.getBitacoraCollection().add(bitacora);
                 idSeguimiento = em.merge(idSeguimiento);
             }
             em.getTransaction().commit();
@@ -55,34 +55,34 @@ public class ObservacionGeneralJpaController implements Serializable {
         }
     }
 
-    public void edit(ObservacionGeneral observacionGeneral) throws NonexistentEntityException, Exception {
+    public void edit(Bitacora bitacora) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            ObservacionGeneral persistentObservacionGeneral = em.find(ObservacionGeneral.class, observacionGeneral.getIdObservacionGral());
-            Seguimiento idSeguimientoOld = persistentObservacionGeneral.getIdSeguimiento();
-            Seguimiento idSeguimientoNew = observacionGeneral.getIdSeguimiento();
+            Bitacora persistentBitacora = em.find(Bitacora.class, bitacora.getIdBitacora());
+            Seguimiento idSeguimientoOld = persistentBitacora.getIdSeguimiento();
+            Seguimiento idSeguimientoNew = bitacora.getIdSeguimiento();
             if (idSeguimientoNew != null) {
                 idSeguimientoNew = em.getReference(idSeguimientoNew.getClass(), idSeguimientoNew.getIdSeguimiento());
-                observacionGeneral.setIdSeguimiento(idSeguimientoNew);
+                bitacora.setIdSeguimiento(idSeguimientoNew);
             }
-            observacionGeneral = em.merge(observacionGeneral);
+            bitacora = em.merge(bitacora);
             if (idSeguimientoOld != null && !idSeguimientoOld.equals(idSeguimientoNew)) {
-                idSeguimientoOld.getObservacionGeneralCollection().remove(observacionGeneral);
+                idSeguimientoOld.getBitacoraCollection().remove(bitacora);
                 idSeguimientoOld = em.merge(idSeguimientoOld);
             }
             if (idSeguimientoNew != null && !idSeguimientoNew.equals(idSeguimientoOld)) {
-                idSeguimientoNew.getObservacionGeneralCollection().add(observacionGeneral);
+                idSeguimientoNew.getBitacoraCollection().add(bitacora);
                 idSeguimientoNew = em.merge(idSeguimientoNew);
             }
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                Integer id = observacionGeneral.getIdObservacionGral();
-                if (findObservacionGeneral(id) == null) {
-                    throw new NonexistentEntityException("The observacionGeneral with id " + id + " no longer exists.");
+                Integer id = bitacora.getIdBitacora();
+                if (findBitacora(id) == null) {
+                    throw new NonexistentEntityException("The bitacora with id " + id + " no longer exists.");
                 }
             }
             throw ex;
@@ -98,19 +98,19 @@ public class ObservacionGeneralJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            ObservacionGeneral observacionGeneral;
+            Bitacora bitacora;
             try {
-                observacionGeneral = em.getReference(ObservacionGeneral.class, id);
-                observacionGeneral.getIdObservacionGral();
+                bitacora = em.getReference(Bitacora.class, id);
+                bitacora.getIdBitacora();
             } catch (EntityNotFoundException enfe) {
-                throw new NonexistentEntityException("The observacionGeneral with id " + id + " no longer exists.", enfe);
+                throw new NonexistentEntityException("The bitacora with id " + id + " no longer exists.", enfe);
             }
-            Seguimiento idSeguimiento = observacionGeneral.getIdSeguimiento();
+            Seguimiento idSeguimiento = bitacora.getIdSeguimiento();
             if (idSeguimiento != null) {
-                idSeguimiento.getObservacionGeneralCollection().remove(observacionGeneral);
+                idSeguimiento.getBitacoraCollection().remove(bitacora);
                 idSeguimiento = em.merge(idSeguimiento);
             }
-            em.remove(observacionGeneral);
+            em.remove(bitacora);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -119,19 +119,19 @@ public class ObservacionGeneralJpaController implements Serializable {
         }
     }
 
-    public List<ObservacionGeneral> findObservacionGeneralEntities() {
-        return findObservacionGeneralEntities(true, -1, -1);
+    public List<Bitacora> findBitacoraEntities() {
+        return findBitacoraEntities(true, -1, -1);
     }
 
-    public List<ObservacionGeneral> findObservacionGeneralEntities(int maxResults, int firstResult) {
-        return findObservacionGeneralEntities(false, maxResults, firstResult);
+    public List<Bitacora> findBitacoraEntities(int maxResults, int firstResult) {
+        return findBitacoraEntities(false, maxResults, firstResult);
     }
 
-    private List<ObservacionGeneral> findObservacionGeneralEntities(boolean all, int maxResults, int firstResult) {
+    private List<Bitacora> findBitacoraEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(ObservacionGeneral.class));
+            cq.select(cq.from(Bitacora.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -143,20 +143,20 @@ public class ObservacionGeneralJpaController implements Serializable {
         }
     }
 
-    public ObservacionGeneral findObservacionGeneral(Integer id) {
+    public Bitacora findBitacora(Integer id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(ObservacionGeneral.class, id);
+            return em.find(Bitacora.class, id);
         } finally {
             em.close();
         }
     }
 
-    public int getObservacionGeneralCount() {
+    public int getBitacoraCount() {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<ObservacionGeneral> rt = cq.from(ObservacionGeneral.class);
+            Root<Bitacora> rt = cq.from(Bitacora.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();

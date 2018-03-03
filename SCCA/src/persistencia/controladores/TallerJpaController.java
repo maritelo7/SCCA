@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package persistencia.controlladores;
+package persistencia.controladores;
 
 import java.io.Serializable;
 import java.util.List;
@@ -13,16 +13,16 @@ import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import persistencia.Aviso;
-import persistencia.controlladores.exceptions.NonexistentEntityException;
+import persistencia.Taller;
+import persistencia.controladores.exceptions.NonexistentEntityException;
 
 /**
  *
  * @author marianacro
  */
-public class AvisoJpaController implements Serializable {
+public class TallerJpaController implements Serializable {
 
-    public AvisoJpaController(EntityManagerFactory emf) {
+    public TallerJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
     private EntityManagerFactory emf = null;
@@ -31,12 +31,12 @@ public class AvisoJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(Aviso aviso) {
+    public void create(Taller taller) {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            em.persist(aviso);
+            em.persist(taller);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -45,19 +45,19 @@ public class AvisoJpaController implements Serializable {
         }
     }
 
-    public void edit(Aviso aviso) throws NonexistentEntityException, Exception {
+    public void edit(Taller taller) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            aviso = em.merge(aviso);
+            taller = em.merge(taller);
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                Integer id = aviso.getIdAviso();
-                if (findAviso(id) == null) {
-                    throw new NonexistentEntityException("The aviso with id " + id + " no longer exists.");
+                Integer id = taller.getIdTaller();
+                if (findTaller(id) == null) {
+                    throw new NonexistentEntityException("The taller with id " + id + " no longer exists.");
                 }
             }
             throw ex;
@@ -73,14 +73,14 @@ public class AvisoJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Aviso aviso;
+            Taller taller;
             try {
-                aviso = em.getReference(Aviso.class, id);
-                aviso.getIdAviso();
+                taller = em.getReference(Taller.class, id);
+                taller.getIdTaller();
             } catch (EntityNotFoundException enfe) {
-                throw new NonexistentEntityException("The aviso with id " + id + " no longer exists.", enfe);
+                throw new NonexistentEntityException("The taller with id " + id + " no longer exists.", enfe);
             }
-            em.remove(aviso);
+            em.remove(taller);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -89,19 +89,19 @@ public class AvisoJpaController implements Serializable {
         }
     }
 
-    public List<Aviso> findAvisoEntities() {
-        return findAvisoEntities(true, -1, -1);
+    public List<Taller> findTallerEntities() {
+        return findTallerEntities(true, -1, -1);
     }
 
-    public List<Aviso> findAvisoEntities(int maxResults, int firstResult) {
-        return findAvisoEntities(false, maxResults, firstResult);
+    public List<Taller> findTallerEntities(int maxResults, int firstResult) {
+        return findTallerEntities(false, maxResults, firstResult);
     }
 
-    private List<Aviso> findAvisoEntities(boolean all, int maxResults, int firstResult) {
+    private List<Taller> findTallerEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(Aviso.class));
+            cq.select(cq.from(Taller.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -113,20 +113,20 @@ public class AvisoJpaController implements Serializable {
         }
     }
 
-    public Aviso findAviso(Integer id) {
+    public Taller findTaller(Integer id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(Aviso.class, id);
+            return em.find(Taller.class, id);
         } finally {
             em.close();
         }
     }
 
-    public int getAvisoCount() {
+    public int getTallerCount() {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<Aviso> rt = cq.from(Aviso.class);
+            Root<Taller> rt = cq.from(Taller.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();

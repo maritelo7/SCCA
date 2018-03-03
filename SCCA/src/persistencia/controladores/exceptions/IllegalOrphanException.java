@@ -1,4 +1,4 @@
-package persistencia.controlladores.exceptions;
+package persistencia.controladores.exceptions;
 
 import java.util.ArrayList;
 import java.util.List;

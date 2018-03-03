@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package persistencia.controlladores;
+package persistencia.controladores;
 
 import java.io.Serializable;
 import java.util.List;
@@ -17,7 +17,7 @@ import persistencia.Asesor;
 import persistencia.Asesoria;
 import persistencia.Reservacion;
 import persistencia.Seguimiento;
-import persistencia.controlladores.exceptions.NonexistentEntityException;
+import persistencia.controladores.exceptions.NonexistentEntityException;
 
 /**
  *

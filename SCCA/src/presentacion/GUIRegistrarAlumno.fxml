@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="642.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.111" fx:controller="presentacion.GUIRegistrarAlumnoController">
+   <children>
+      <Label layoutX="27.0" layoutY="27.0" text="Matricula del alumno a consultar:" />
+      <TextField fx:id="textMatriculaConsultar" layoutX="238.0" layoutY="22.0" prefHeight="27.0" prefWidth="223.0" />
+      <Button fx:id="botonBuscar" layoutX="473.0" layoutY="22.0" mnemonicParsing="false" text="Buscar" />
+      <Label layoutX="27.0" layoutY="81.0" text="Nombre:" />
+      <TextField fx:id="textNombre" layoutX="94.0" layoutY="76.0" prefHeight="27.0" prefWidth="180.0" />
+      <Label layoutX="284.0" layoutY="81.0" text="Apellido paterno:" />
+      <TextField fx:id="textApellidoPat" layoutX="393.0" layoutY="76.0" prefHeight="27.0" prefWidth="223.0" />
+      <Label layoutX="26.0" layoutY="126.0" text="Apellido Materno:" />
+      <TextField fx:id="textApellidoMat" layoutX="144.0" layoutY="121.0" prefHeight="27.0" prefWidth="188.0" />
+      <Label layoutX="337.0" layoutY="126.0" text="Fecha de naciemiento:" />
+      <TextField fx:id="textFechaNac" layoutX="482.0" layoutY="121.0" prefHeight="27.0" prefWidth="139.0" />
+      <Label layoutX="26.0" layoutY="176.0" text="Matricula:" />
+      <TextField fx:id="textMatricula" layoutX="94.0" layoutY="171.0" prefHeight="27.0" prefWidth="139.0" />
+      <Label layoutX="238.0" layoutY="176.0" text="Carrera:" />
+      <TextField fx:id="textCarrera" layoutX="294.0" layoutY="171.0" />
+      <Label layoutX="465.0" layoutY="176.0" text="Area:" />
+      <TextField fx:id="textArea" layoutX="498.0" layoutY="171.0" prefHeight="27.0" prefWidth="121.0" />
+      <Label layoutX="26.0" layoutY="220.0" text="Correo:" />
+      <TextField fx:id="textCorreo" layoutX="90.0" layoutY="215.0" prefHeight="27.0" prefWidth="281.0" />
+      <Label layoutX="376.0" layoutY="220.0" text="Telefono:" />
+      <TextField fx:id="textTelefono" layoutX="441.0" layoutY="215.0" prefHeight="27.0" prefWidth="180.0" />
+      <Label layoutX="25.0" layoutY="270.0" text="Genero:" />
+      <TextField fx:id="textGenero" layoutX="87.0" layoutY="265.0" />
+      <Button fx:id="botonAceptar" layoutX="201.0" layoutY="333.0" mnemonicParsing="false" text="Aceptar" />
+      <Button fx:id="botonCancelar" layoutX="393.0" layoutY="333.0" mnemonicParsing="false" text="Cancelar" />
+   </children>
+</AnchorPane>

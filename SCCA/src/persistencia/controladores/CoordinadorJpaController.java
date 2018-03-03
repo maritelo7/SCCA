@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package persistencia.controlladores;
+package persistencia.controladores;
 
 import java.io.Serializable;
 import java.util.List;
@@ -13,17 +13,17 @@ import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import persistencia.Recepcionista;
-import persistencia.controlladores.exceptions.NonexistentEntityException;
-import persistencia.controlladores.exceptions.PreexistingEntityException;
+import persistencia.Coordinador;
+import persistencia.controladores.exceptions.NonexistentEntityException;
+import persistencia.controladores.exceptions.PreexistingEntityException;
 
 /**
  *
  * @author marianacro
  */
-public class RecepcionistaJpaController implements Serializable {
+public class CoordinadorJpaController implements Serializable {
 
-    public RecepcionistaJpaController(EntityManagerFactory emf) {
+    public CoordinadorJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
     private EntityManagerFactory emf = null;
@@ -32,16 +32,16 @@ public class RecepcionistaJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(Recepcionista recepcionista) throws PreexistingEntityException, Exception {
+    public void create(Coordinador coordinador) throws PreexistingEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            em.persist(recepcionista);
+            em.persist(coordinador);
             em.getTransaction().commit();
         } catch (Exception ex) {
-            if (findRecepcionista(recepcionista.getNumPersonal()) != null) {
-                throw new PreexistingEntityException("Recepcionista " + recepcionista + " already exists.", ex);
+            if (findCoordinador(coordinador.getNumPersonal()) != null) {
+                throw new PreexistingEntityException("Coordinador " + coordinador + " already exists.", ex);
             }
             throw ex;
         } finally {
@@ -51,19 +51,19 @@ public class RecepcionistaJpaController implements Serializable {
         }
     }
 
-    public void edit(Recepcionista recepcionista) throws NonexistentEntityException, Exception {
+    public void edit(Coordinador coordinador) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            recepcionista = em.merge(recepcionista);
+            coordinador = em.merge(coordinador);
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                String id = recepcionista.getNumPersonal();
-                if (findRecepcionista(id) == null) {
-                    throw new NonexistentEntityException("The recepcionista with id " + id + " no longer exists.");
+                String id = coordinador.getNumPersonal();
+                if (findCoordinador(id) == null) {
+                    throw new NonexistentEntityException("The coordinador with id " + id + " no longer exists.");
                 }
             }
             throw ex;
@@ -79,14 +79,14 @@ public class RecepcionistaJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Recepcionista recepcionista;
+            Coordinador coordinador;
             try {
-                recepcionista = em.getReference(Recepcionista.class, id);
-                recepcionista.getNumPersonal();
+                coordinador = em.getReference(Coordinador.class, id);
+                coordinador.getNumPersonal();
             } catch (EntityNotFoundException enfe) {
-                throw new NonexistentEntityException("The recepcionista with id " + id + " no longer exists.", enfe);
+                throw new NonexistentEntityException("The coordinador with id " + id + " no longer exists.", enfe);
             }
-            em.remove(recepcionista);
+            em.remove(coordinador);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -95,19 +95,19 @@ public class RecepcionistaJpaController implements Serializable {
         }
     }
 
-    public List<Recepcionista> findRecepcionistaEntities() {
-        return findRecepcionistaEntities(true, -1, -1);
+    public List<Coordinador> findCoordinadorEntities() {
+        return findCoordinadorEntities(true, -1, -1);
     }
 
-    public List<Recepcionista> findRecepcionistaEntities(int maxResults, int firstResult) {
-        return findRecepcionistaEntities(false, maxResults, firstResult);
+    public List<Coordinador> findCoordinadorEntities(int maxResults, int firstResult) {
+        return findCoordinadorEntities(false, maxResults, firstResult);
     }
 
-    private List<Recepcionista> findRecepcionistaEntities(boolean all, int maxResults, int firstResult) {
+    private List<Coordinador> findCoordinadorEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(Recepcionista.class));
+            cq.select(cq.from(Coordinador.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -119,20 +119,20 @@ public class RecepcionistaJpaController implements Serializable {
         }
     }
 
-    public Recepcionista findRecepcionista(String id) {
+    public Coordinador findCoordinador(String id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(Recepcionista.class, id);
+            return em.find(Coordinador.class, id);
         } finally {
             em.close();
         }
     }
 
-    public int getRecepcionistaCount() {
+    public int getCoordinadorCount() {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<Recepcionista> rt = cq.from(Recepcionista.class);
+            Root<Coordinador> rt = cq.from(Coordinador.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();
