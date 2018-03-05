@@ -11,7 +11,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" fx:id="fondo" prefHeight="542.0" prefWidth="797.0" style="-fx-background-color: FBFAE1;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentacion.GUIActualizarAlumnoController">
+<AnchorPane id="AnchorPane" fx:id="fondo" prefHeight="649.0" prefWidth="795.0" style="-fx-background-color: FBFAE1;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentacion.GUIActualizarAlumnoController">
    <children>
       <JFXTextField fx:id="txtTelefono" focusColor="#128494" labelFloat="true" layoutX="430.0" layoutY="447.0" prefHeight="31.0" prefWidth="293.0" unFocusColor="#128494">
          <cursor>
@@ -86,5 +86,8 @@
             <Font size="18.0" />
          </font>
       </Label>
+      <JFXButton fx:id="btnRegresar" layoutX="69.0" layoutY="577.0" style="-fx-background-color: #128494;" text="Regresar" textFill="WHITE" />
+      <JFXButton fx:id="btnEditarGuardar" layoutX="398.0" layoutY="577.0" prefHeight="31.0" prefWidth="97.0" style="-fx-background-color: #128494;" text="Editar" textFill="WHITE" />
+      <JFXButton fx:id="btnEliminar" layoutX="636.0" layoutY="577.0" style="-fx-background-color: #128494;" text="Eliminar" textFill="WHITE" />
    </children>
 </AnchorPane>

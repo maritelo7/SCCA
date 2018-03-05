@@ -51,6 +51,12 @@ public class GUIActualizarAlumnoController implements Initializable {
     private JFXTextField txtBusqueda;
     @FXML
     private JFXButton btnBuscar;
+    @FXML
+    private JFXButton btnRegresar;
+    @FXML
+    private JFXButton btnEditarGuardar;
+    @FXML
+    private JFXButton btnEliminar;
 
     /**
      * Initializes the controller class.
