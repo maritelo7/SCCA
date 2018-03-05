@@ -33,11 +33,11 @@
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor></JFXTextField>
-      <JFXComboBox fx:id="cbxCarrera" focusColor="#128494" layoutX="431.0" layoutY="330.0" prefHeight="31.0" prefWidth="293.0" unFocusColor="#128494">
+      <JFXComboBox fx:id="cbxCarrera" focusColor="#128494" layoutX="431.0" layoutY="330.0" prefHeight="31.0" prefWidth="293.0" promptText="Carrera" unFocusColor="#128494">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></JFXComboBox>
-      <JFXComboBox fx:id="cbxSexo" focusColor="#128494" layoutX="431.0" layoutY="367.0" prefHeight="31.0" prefWidth="293.0" unFocusColor="#128494">
+      <JFXComboBox fx:id="cbxSexo" focusColor="#128494" layoutX="431.0" layoutY="367.0" prefHeight="31.0" prefWidth="293.0" promptText="Sexo" unFocusColor="#128494">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -60,7 +60,7 @@
       <Label layoutX="250.0" layoutY="414.0" prefHeight="21.0" prefWidth="148.0" text="Correo electrónico:" textFill="#00b7c2" />
       <Label layoutX="250.0" layoutY="494.0" prefHeight="21.0" prefWidth="148.0" text="Fecha de nacimiento:" textFill="#00b7c2" />
       <Label layoutX="250.0" layoutY="375.0" prefHeight="21.0" prefWidth="148.0" text="Sexo:" textFill="#00b7c2" />
-      <JFXComboBox fx:id="cbxArea" focusColor="#128494" layoutX="431.0" layoutY="284.0" prefHeight="31.0" prefWidth="293.0" unFocusColor="#128494">
+      <JFXComboBox fx:id="cbxArea" focusColor="#128494" layoutX="431.0" layoutY="284.0" prefHeight="31.0" prefWidth="293.0" promptText="Área" unFocusColor="#128494">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></JFXComboBox>
