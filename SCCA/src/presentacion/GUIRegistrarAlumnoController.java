@@ -13,6 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import logica.AlumnoDAO;
+import persistencia.Alumno;
 
 /**
  * FXML Controller class
@@ -58,7 +59,9 @@ public class GUIRegistrarAlumnoController implements Initializable {
         
     }   
     
-    public AlumnoDAO obtenerInformación(){
+    public Alumno obtenerInformación(){
+        Alumno entidadAlumno = null;
+        AlumnoDAO alumnoDao = new AlumnoDAO();
         String nombre = textNombre.getText();
         String apellidoPat = textApellidoPat.getText();
         String apellidoMat = textApellidoMat.getText();
@@ -69,15 +72,20 @@ public class GUIRegistrarAlumnoController implements Initializable {
         String telefono = textTelefono.getText();
         String genero = textGenero.getText();
         Date fechaNac = obtenerFechaNac();
-        alumno = new AlumnoDAO(nombre, apellidoPat, apellidoMat, fechaNac, matricula,
+        entidadAlumno = new Alumno(nombre, apellidoPat, apellidoMat, fechaNac, matricula,
                 carrera, area, correo, telefono, genero);
         
-        return alumno;
+        return entidadAlumno;
      }
     
     public Date obtenerFechaNac(){
         Date date = null;
         return date;
+    }
+    
+    @FXML
+    public void consultarAlumnoPorMatricula(){
+        
     }
     
 }

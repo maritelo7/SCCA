@@ -39,6 +39,10 @@ public class AlumnoDAO {
         this.fechaNac = fechaNac;
     }
 
+    public AlumnoDAO() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public String getNombre() {
         return nombre;
     }
