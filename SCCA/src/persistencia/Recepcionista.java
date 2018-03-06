@@ -30,7 +30,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Recepcionista.findByCorreo", query = "SELECT r FROM Recepcionista r WHERE r.correo = :correo")
     , @NamedQuery(name = "Recepcionista.findByNombre", query = "SELECT r FROM Recepcionista r WHERE r.nombre = :nombre")
     , @NamedQuery(name = "Recepcionista.findByNombreUsuario", query = "SELECT r FROM Recepcionista r WHERE r.nombreUsuario = :nombreUsuario")
-    , @NamedQuery(name = "Recepcionista.findByClaveUsuario", query = "SELECT r FROM Recepcionista r WHERE r.claveUsuario = :claveUsuario")})
+    , @NamedQuery(name = "Recepcionista.findByClaveUsuario", query = "SELECT r FROM Recepcionista r WHERE r.claveUsuario = :claveUsuario")
+    , @NamedQuery(name = "Recepcionista.iniciarSesion", query = "SELECT r FROM Recepcionista r WHERE r.nombreUsuario = :nombreUsuario AND r.claveUsuario =:claveUsuario")})
 public class Recepcionista implements Serializable {
 
     private static final long serialVersionUID = 1L;

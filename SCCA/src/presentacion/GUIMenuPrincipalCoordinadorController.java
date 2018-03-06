@@ -8,7 +8,7 @@ package presentacion;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
-import logica.Coordinador;
+import logica.CoordinadorDAO;
 
 /**
  * FXML Controller class
@@ -16,7 +16,7 @@ import logica.Coordinador;
  * @author Mari
  */
 public class GUIMenuPrincipalCoordinadorController implements Initializable {
-   Coordinador coordinador;
+   CoordinadorDAO coordinador;
    /**
     * Initializes the controller class.
     */
@@ -25,7 +25,7 @@ public class GUIMenuPrincipalCoordinadorController implements Initializable {
       // TODO
    }   
    
-   public void cargarCuenta(Coordinador coordinador) {
+   public void cargarCuenta(CoordinadorDAO coordinador) {
       this.coordinador = coordinador;
    }
    

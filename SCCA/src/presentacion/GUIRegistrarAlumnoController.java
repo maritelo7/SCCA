@@ -76,7 +76,8 @@ public class GUIRegistrarAlumnoController implements Initializable {
      }
     
     public Date obtenerFechaNac(){
-        
+        Date date = null;
+        return date;
     }
     
 }

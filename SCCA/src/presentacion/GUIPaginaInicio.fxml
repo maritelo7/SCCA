@@ -4,6 +4,7 @@
 <?import com.jfoenix.controls.JFXDrawer?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
@@ -12,6 +13,7 @@
    <children>
       <JFXDrawer fx:id="drawerPaginaInicio" layoutX="261.0" layoutY="-2.0" prefHeight="405.0" prefWidth="458.0" />
       <ImageView fitHeight="405.0" fitWidth="458.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="labelMensaje" layoutX="383.0" layoutY="270.0" prefHeight="25.0" prefWidth="215.0" />
       <JFXButton fx:id="botonConsultarActividades" layoutX="36.0" layoutY="84.0" prefHeight="55.0" prefWidth="234.0" text="Consultar calendario de actividades" />
       <JFXButton fx:id="botonConsultarAvisos" layoutX="49.0" layoutY="194.0" prefHeight="43.0" prefWidth="209.0" text="Consultar historial de avisos" />
       <JFXButton fx:id="botonIniciarSesion" layoutX="131.0" layoutY="319.0" prefHeight="33.0" prefWidth="85.0" text="Iniciar sesión" wrapText="true" />

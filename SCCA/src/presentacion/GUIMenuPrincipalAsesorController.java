@@ -8,7 +8,7 @@ package presentacion;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
-import logica.Asesor;
+import logica.AsesorDAO;
 
 /**
  * FXML Controller class
@@ -16,7 +16,7 @@ import logica.Asesor;
  * @author Mari
  */
 public class GUIMenuPrincipalAsesorController implements Initializable {
-Asesor asesor;
+AsesorDAO asesor;
    /**
     * Initializes the controller class.
     */
@@ -25,7 +25,7 @@ Asesor asesor;
       // TODO
    }   
    
-   public void cargarCuenta(Asesor asesor) {
+   public void cargarCuenta(AsesorDAO asesor) {
       this.asesor = asesor;
    }
    

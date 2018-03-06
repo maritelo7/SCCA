@@ -12,14 +12,21 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
-import logica.Asesor;
-import logica.Coordinador;
-import logica.Recepcionista;
+import javax.persistence.PersistenceException;
+import logica.AdministracionUsuario;
+import logica.AsesorDAO;
+import logica.CoordinadorDAO;
+import logica.RecepcionistaDAO;
 
 /**
  * FXML Controller class
@@ -44,39 +51,45 @@ public class GUIPaginaInicioController implements Initializable {
    private JFXTextField fieldUsuario;
    @FXML
    private JFXButton botonIngresar;
+   @FXML
+   private Label labelMensaje;
 
    @Override
    public void initialize(URL url, ResourceBundle rb) {
       // TODO
-       botonSalir.setOnAction(event -> {          
-          String usuario = fieldUsuario.getText();
-          String clave = fieldClave.getText();
-          if (validarCampos(usuario, clave)) {
-            //Se checaría primero si el nombre y usuario es de un CO, sino si es un AS y finalmente si es un RE
-           String tipoUsuario = "";
-           Recepcionista usuarioRE = null;
-           Asesor usuarioAS = null;
-           Coordinador usuarioCO = null;
-            if (recuperarUsuarioCoordinador(usuario, clave) == null){
-              if (recuperarUsuarioAsesor(usuario, clave == null)){
-                 if (recuperarUsuarioRecepcionista(usuario, clave)== null){
-                 
-                 } else{
-                    usuarioRE = recuperarUsuarioRecepcionista(usuario, clave);
-                    tipoUsuario = "recepcionista";
-                 }
-              }else{
-                 usuarioAS = recuperarUsuarioAsesor(usuario, clave);
-                 tipoUsuario = "asesor";
-              }
-           } else {
-              usuarioCO = recuperarUsuarioCoordinador(usuario, clave);
-              tipoUsuario = "coordinador";
-           }
-            que onda que pex 
+      botonIngresar.setOnAction(event -> {
+         String usuario = fieldUsuario.getText();
+         String clave = fieldClave.getText();
+         if (validarCampos(usuario, clave)) {
+            String tipoUsuario = "";
+            RecepcionistaDAO usuarioRE = null;
+            AsesorDAO usuarioAS = null;
+            CoordinadorDAO usuarioCO = null;
 
+            try {
+               if (recuperarUsuarioCoordinador(usuario, clave) == null) {
+                  if (recuperarUsuarioAsesor(usuario, clave) == null) {
+                     if (recuperarUsuarioRecepcionista(usuario, clave) == null) {
+                     } else {
+                        usuarioRE = recuperarUsuarioRecepcionista(usuario, clave);
+                        tipoUsuario = "recepcionista";
+                     }
+                  } else {
+                     usuarioAS = recuperarUsuarioAsesor(usuario, clave);
+                     tipoUsuario = "asesor";
+                  }
+               } else {
+                  usuarioCO = recuperarUsuarioCoordinador(usuario, clave);
+                  tipoUsuario = "coordinador";
+               }
+            } catch (PersistenceException ex) {
+               labelMensaje.setText("ERROR CONEXIÓN");
+                limpiar();
+            } catch (NoSuchAlgorithmException ex) {
+               Logger.getLogger(GUIPaginaInicioController.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
-            try {               
+            if (!tipoUsuario.equals("")) {
                Node node = (Node) event.getSource();
                Stage stage = (Stage) node.getScene().getWindow();
                String nombreMenuPorActor = null;
@@ -86,71 +99,79 @@ public class GUIPaginaInicioController implements Initializable {
                   if (tipoUsuario.equals("coordinador")) {
                      GUIMenuPrincipalCoordinadorController controller = loader.getController();
                      controller.cargarCuenta(usuarioCO);
-                  }                  
-                  if (tipoUsuario.equals("asesor")){
+                     System.out.println("ERES UN COORDINADOR");
+                  }
+                  if (tipoUsuario.equals("asesor")) {
                      GUIMenuPrincipalAsesorController controller = loader.getController();
                      controller.cargarCuenta(usuarioAS);
+                     System.out.println("ERES UN ASESOR");
                   }
-                  if(tipoUsuario.equals("recepcionista")){
+                  if (tipoUsuario.equals("recepcionista")) {
                      GUIMenuPrincipalRecepcionistaController controller = loader.getController();
-                     controller.cargarCuenta(usuarioRE);
-                  }   
+                     controller.cargarCuenta(usuarioRE);                     
+                     System.out.println("ERES UN RECEPCIONISTA");
+                  }
                   stage.setScene(scene);
                   stage.setResizable(false);
                   stage.show();
                } catch (IOException ex) {
                   //Logger.getLogger(GUI_IniciarSesionController.class.getName()).log(Level.SEVERE, null, ex);
                }
-            } catch (ArrayIndexOutOfBoundsException ex) {
-               //mensaje datos incorrectos o nó válidos
-           //    limpiar();
-            //} catch (PersistenceException ex) {
-               //mensaje error conexion
-             //  limpiar();            
-            //} catch (NoSuchAlgorithmException ex) {
-              //Logger.getLogger(GUI_IniciarSesionController.class.getName()).log(Level.SEVERE, null, ex);
-           } 
+            } else {
+                labelMensaje.setText("DATOS INCORRECTOS");
+                limpiar();
+            }
          } else {
-           //mensaje campos llenos
+             labelMensaje.setText("LLENAR CAMPOS");            
          }
       });
    }
-       
-//   public Coordinador recuperarUsuarioCoordinador(usuario, clave){     
-//      Coordinador usuarioCO = null;
-//      AdministracionCuenta adminCuenta = new AdministracionCuenta();
-//      cuentaRecuperada = adminCuenta.consultarCuenta(nickname, clave);
-//      return usuarioCO; 
-//   }
-//   
-//      public Asesor recuperarUsuarioAsesor(usuario, clave){     
-//      Asesor usuarioAS = null;
-//      AdministracionCuenta adminCuenta = new AdministracionCuenta();
-//      String nickname = tFieldNick.getText();
-//      String clave = pFieldClave.getText();
-//      cuentaRecuperada = adminCuenta.consultarCuenta(nickname, clave);
-//      return usuarioAS; 
-//   }
-//      
-//   public Recepcionista recuperarUsuarioRecepcionista(usuario, clave){     
-//      Recepcionista usuarioRE = null;
-//      AdministracionCuenta adminCuenta = new AdministracionCuenta();
-//      String nickname = tFieldNick.getText();
-//      String clave = pFieldClave.getText();
-//      cuentaRecuperada = adminCuenta.consultarCuenta(nickname, clave);
-//      return usuarioRE; 
-//   }
-   
-      public boolean validarCampos(String usuario, String clave) {
-      return ((usuario!= null && !(usuario.trim().isEmpty()))
+
+   public CoordinadorDAO recuperarUsuarioCoordinador(String usuario, String clave) throws PersistenceException, NoSuchAlgorithmException {
+      CoordinadorDAO usuarioCoordinador = null;
+      AdministracionUsuario adminUsuario = new AdministracionUsuario();
+      try {
+         usuarioCoordinador = adminUsuario.recuperarCuentaCoordinador(usuario, clave);
+      } catch (ArrayIndexOutOfBoundsException ex) {
+         //Logger.getLogger(GUIPaginaInicioController.class.getName()).log(Level.SEVERE, null, ex);
+      }
+      return usuarioCoordinador;
+   }
+
+   public AsesorDAO recuperarUsuarioAsesor(String usuario, String clave) throws PersistenceException, NoSuchAlgorithmException {
+      AsesorDAO usuarioAsesor = null;
+      AdministracionUsuario adminUsuario = new AdministracionUsuario();
+      try {
+         usuarioAsesor = adminUsuario.recuperarCuentaAsesor(usuario, clave);
+      } catch (ArrayIndexOutOfBoundsException ex) {
+         //Logger.getLogger(GUIPaginaInicioController.class.getName()).log(Level.SEVERE, null, ex);
+      }
+      return usuarioAsesor;
+   }
+
+   public RecepcionistaDAO recuperarUsuarioRecepcionista(String usuario, String clave) throws PersistenceException, NoSuchAlgorithmException {
+      RecepcionistaDAO usuarioRecepcionista = null;
+      AdministracionUsuario adminUsuario = new AdministracionUsuario();
+      try {
+         usuarioRecepcionista = adminUsuario.recuperarCuentaRecepcionista(usuario, clave);
+      } catch (ArrayIndexOutOfBoundsException ex) {
+         //Logger.getLogger(GUIPaginaInicioController.class.getName()).log(Level.SEVERE, null, ex);
+      }
+      return usuarioRecepcionista;
+   }
+
+   public boolean validarCampos(String usuario, String clave) {
+      return ((usuario != null && !(usuario.trim().isEmpty()))
           && (clave != null && !(clave.trim().isEmpty())));
    }
-      
-      public void limpiar() {
+
+   public void limpiar() {
       fieldUsuario.clear();
       fieldClave.clear();
    }
-      
-   
-   
+
+   @FXML
+   private void initialize(ActionEvent event) {
+   }
+
 }

@@ -40,7 +40,8 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Asesor.findByClaveUsuario", query = "SELECT a FROM Asesor a WHERE a.claveUsuario = :claveUsuario")
     , @NamedQuery(name = "Asesor.findByCarreraDeInteres", query = "SELECT a FROM Asesor a WHERE a.carreraDeInteres = :carreraDeInteres")
     , @NamedQuery(name = "Asesor.findByTipoContrataci\u00f3n", query = "SELECT a FROM Asesor a WHERE a.tipoContrataci\u00f3n = :tipoContrataci\u00f3n")
-    , @NamedQuery(name = "Asesor.findByFechaContratacion", query = "SELECT a FROM Asesor a WHERE a.fechaContratacion = :fechaContratacion")})
+    , @NamedQuery(name = "Asesor.findByFechaContratacion", query = "SELECT a FROM Asesor a WHERE a.fechaContratacion = :fechaContratacion")
+    , @NamedQuery(name = "Asesor.iniciarSesion", query = "SELECT a FROM Asesor a WHERE a.nombreUsuario = :nombreUsuario AND a.claveUsuario =:claveUsuario")})
 public class Asesor implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -83,6 +84,11 @@ public class Asesor implements Serializable {
 
     public Asesor(String numPersonal) {
         this.numPersonal = numPersonal;
+    }
+    
+    public Asesor(String numPersonal, String claveUsuario) {
+        this.numPersonal = numPersonal;
+        this.claveUsuario = claveUsuario;
     }
 
     public Asesor(String numPersonal, String apellidoPaterno, String correo, String nombre, String nombreUsuario, String claveUsuario, Date fechaContratacion) {

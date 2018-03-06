@@ -7,8 +7,7 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="603.0" prefWidth="670.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.111" fx:controller="presentacion.GUIAdministrarSeguimientoController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentacion.GUIAdministrarSeguimientoController">
    <children>
       <Label fx:id="idBitacora" layoutX="33.0" layoutY="34.0" text="Bitácoras" />
       <TableView fx:id="tableBitacoras" layoutX="33.0" layoutY="59.0" prefHeight="141.0" prefWidth="605.0">
