@@ -24,7 +24,7 @@ import Persistencia.Recepcionista;
  */
 public class AdministracionUsuario {
 
-   final static String UNIDAD_PERSISTENCIA = "SSCAPU2";
+   final static String UNIDAD_PERSISTENCIA = "SCCAPUCRISTHIAN";
    EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory(UNIDAD_PERSISTENCIA, null);
    EntityManager entity = entityManagerFactory.createEntityManager();
 

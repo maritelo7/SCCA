@@ -6,65 +6,61 @@
 package presentacion;
 
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
-import javafx.scene.layout.AnchorPane;
 
 /**
  * FXML Controller class
  *
  * @author Cristhian Ubaldo Promotor
  */
-public class GUIActualizarAlumnoController implements Initializable {
+public class GUIActualizarInformacionAlumnoController implements Initializable {
 
     @FXML
-    private AnchorPane fondo;
-    @FXML
-    private JFXTextField txtTelefono;
-    @FXML
-    private JFXTextField txtCorreo;
-    @FXML
-    private JFXTextField txtMaterno;
-    @FXML
-    private JFXTextField txtPaterno;
-    @FXML
-    private JFXTextField txtNombre;
-    @FXML
-    private JFXComboBox<?> cbxCarrera;
-    @FXML
-    private JFXComboBox<?> cbxSexo;
-    @FXML
-    private DatePicker dtpFechaNacimiento;
-    @FXML
-    private JFXTextField txtMatricula;
-    @FXML
-    private JFXComboBox<?> cbxArea;
-    @FXML
-    private ListView<?> listaResultados;
-    @FXML
     private JFXTextField txtBusqueda;
+    @FXML
+    private ListView<?> lvCoincidencias;
     @FXML
     private JFXButton btnBuscar;
     @FXML
     private JFXButton btnRegresar;
     @FXML
-    private JFXButton btnEditarGuardar;
+    private JFXButton btnEditar;
     @FXML
     private JFXButton btnEliminar;
+    @FXML
+    private JFXTextField txtMatricula;
+    @FXML
+    private JFXTextField txtNOmbre;
+    @FXML
+    private JFXTextField txtPaterno;
+    @FXML
+    private JFXTextField txtMaterno;
+    @FXML
+    private JFXTextField txtCarrera;
+    @FXML
+    private JFXTextField txtCorreo;
+    @FXML
+    private JFXTextField txtTelefono;
+    @FXML
+    private ComboBox<?> cbxArea;
+    @FXML
+    private ComboBox<String> cbxSexo;
+    @FXML
+    private DatePicker dtpFechaNac;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-        
+        cbxSexo.getItems().addAll("Femenino", "Masculino");
     }    
     
 }

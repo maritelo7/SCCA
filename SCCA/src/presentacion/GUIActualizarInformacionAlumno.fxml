@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentacion.GUIActualizarInformacionAlumnoController">
+   <children>
+      <JFXTextField fx:id="txtBusqueda" layoutX="90.0" layoutY="26.0" prefHeight="31.0" prefWidth="520.0" />
+      <ListView fx:id="lvCoincidencias" layoutX="74.0" layoutY="127.0" prefHeight="381.0" prefWidth="276.0" />
+      <JFXButton fx:id="btnBuscar" layoutX="670.0" layoutY="26.0" text="Bucar" />
+      <JFXButton fx:id="btnRegresar" layoutX="74.0" layoutY="534.0" prefHeight="31.0" prefWidth="139.0" text="Regresar" />
+      <JFXButton fx:id="btnEditar" layoutX="638.0" layoutY="534.0" text="Editar" />
+      <JFXButton fx:id="btnEliminar" layoutX="758.0" layoutY="534.0" text="Eliminar" />
+      <Label layoutX="400.0" layoutY="127.0" text="Matrícula:" />
+      <Label layoutX="400.0" layoutY="168.0" text="Nombre:" />
+      <Label layoutX="400.0" layoutY="210.0" text="Apellido Paterno:" />
+      <Label layoutX="400.0" layoutY="335.0" text="Carrera:" />
+      <Label layoutX="401.0" layoutY="290.0" text="Área:" />
+      <Label layoutX="400.0" layoutY="249.0" text="Apellido Materno:" />
+      <Label layoutX="402.0" layoutY="415.0" text="Correo:" />
+      <Label layoutX="400.0" layoutY="377.0" text="Sexo:" />
+      <Label layoutX="399.0" layoutY="461.0" text="Telefono:" />
+      <Label layoutX="395.0" layoutY="498.0" text="Fecha de nacimiento:" />
+      <JFXTextField fx:id="txtMatricula" layoutX="600.0" layoutY="122.0" />
+      <JFXTextField fx:id="txtNOmbre" layoutX="600.0" layoutY="163.0" />
+      <JFXTextField fx:id="txtPaterno" layoutX="600.0" layoutY="205.0" />
+      <JFXTextField fx:id="txtMaterno" layoutX="600.0" layoutY="244.0" />
+      <JFXTextField fx:id="txtCarrera" layoutX="600.0" layoutY="330.0" />
+      <JFXTextField fx:id="txtCorreo" layoutX="600.0" layoutY="410.0" />
+      <JFXTextField fx:id="txtTelefono" layoutX="600.0" layoutY="448.0" />
+      <ComboBox fx:id="cbxArea" layoutX="600.0" layoutY="296.0" prefHeight="31.0" prefWidth="169.0" promptText="Área" />
+      <ComboBox fx:id="cbxSexo" layoutX="600.0" layoutY="372.0" prefHeight="31.0" prefWidth="169.0" promptText="Sexo" />
+      <DatePicker fx:id="dtpFechaNac" layoutX="600.0" layoutY="493.0" prefHeight="31.0" prefWidth="169.0" />
+   </children>
+</AnchorPane>
