@@ -17,6 +17,9 @@ import Persistencia.Alumno;
 import Persistencia.consultas.AlumnoCONS;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
 import javax.swing.JOptionPane;
 
 /**
@@ -98,9 +101,29 @@ public class GUIRegistrarAlumnoController implements Initializable {
     
     @FXML
     public void registrarAlumno() {
+        if(textNombre.getText().equals("") || textApellidoPat.getText().equals("") ||
+        textMatricula.getText().equals("") || textCarrera.getText().equals("") || 
+        textArea.getText().equals("") || textCorreo.getText().equals("") || 
+        textTelefono.getText().equals("")||textGenero.getText().equals("")){
+        Alert camposVacios = new Alert(Alert.AlertType.INFORMATION);
+        camposVacios.setTitle("Ventana emergente error");
+        camposVacios.setHeaderText(null);
+        camposVacios.setContentText("Por favor ingrese todos los capos obligatorios");
+        ButtonType btAceptar = new ButtonType("OK", ButtonBar.ButtonData.CANCEL_CLOSE);
+        camposVacios.getButtonTypes().setAll(btAceptar);
+        camposVacios.showAndWait();
+        }else{
         AlumnoCONS alumno = new AlumnoCONS();
         alumno.registrarAlumno(obtenerInformacion());
-        JOptionPane.showMessageDialog(null, "Operación realizada correctamente");
+        Alert confirmacion = new Alert(Alert.AlertType.INFORMATION);
+        confirmacion.setTitle("Ventana emergente exito");
+        confirmacion.setHeaderText(null);
+        confirmacion.setContentText("Alumno registrado con exito");
+        ButtonType btAceptar = new ButtonType("OK", ButtonBar.ButtonData.CANCEL_CLOSE);
+        confirmacion.getButtonTypes().setAll(btAceptar);
+        confirmacion.showAndWait();
+        }
+        
     }
     
     
@@ -119,5 +142,7 @@ public class GUIRegistrarAlumnoController implements Initializable {
             System.out.println("No existe :(");
         }
     }
+    
+    
     
 }
