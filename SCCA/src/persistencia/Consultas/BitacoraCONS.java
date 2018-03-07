@@ -10,7 +10,7 @@ import Persistencia.Bitacora;
  * @author marianacro
  */
 public class BitacoraCONS {
-    EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("SCCAPU");
+    EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("SCCAPUCRISTHIAN");
     EntityManager entitymanager = emfactory.createEntityManager();
     
     /**
