@@ -16,10 +16,10 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.cell.PropertyValueFactory;
-import persistencia.Bitacora;
-import persistencia.Consultas.BitacoraCONS;
-import persistencia.Conversacion;
-import persistencia.Taller;
+import Persistencia.Bitacora;
+import Persistencia.consultas.BitacoraCONS;
+import Persistencia.Conversacion;
+import Persistencia.Taller;
 
 /**
  * FXML Controller class
@@ -84,7 +84,7 @@ ObservableList<Bitacora> bitacoras = null;
   
   public void llenarTablaBitacoras(){
     BitacoraCONS consulta = new BitacoraCONS();
-    bitacoras = FXCollections.observableList(consulta.recuperarBitacoras());
+   // bitacoras = FXCollections.observableList(consulta.recuperarBitacoras());
     clmNo.setCellValueFactory(new PropertyValueFactory<>("numBitacora"));
     clmModulo.setCellValueFactory(new PropertyValueFactory<>("modulo"));
     clmSeccion.setCellValueFactory(new PropertyValueFactory<>("seccion"));

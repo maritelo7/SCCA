@@ -12,9 +12,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceException;
-import persistencia.Asesor;
-import persistencia.Coordinador;
-import persistencia.Recepcionista;
+import Persistencia.Asesor;
+import Persistencia.Coordinador;
+import Persistencia.Recepcionista;
 
 /**
  * Clase para implementar la gestión de la entidad cuenta

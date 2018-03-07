@@ -10,7 +10,7 @@
    <children>
       <Label layoutX="31.0" layoutY="110.0" text="*Ingrese la matricula del alumno que desee consultar" />
       <TextField fx:id="textMatriculaConsultar" layoutX="42.0" layoutY="74.0" prefHeight="27.0" prefWidth="219.0" />
-      <Button fx:id="botonBuscar" layoutX="272.0" layoutY="74.0" mnemonicParsing="false" text="Buscar" />
+      <Button fx:id="botonBuscar" layoutX="272.0" layoutY="74.0" mnemonicParsing="false" onAction="#consultarAlumno" text="Buscar" />
       <Label layoutX="28.0" layoutY="162.0" text="Nombre:" />
       <TextField fx:id="textNombre" layoutX="98.0" layoutY="157.0" prefHeight="27.0" prefWidth="288.0" />
       <Label layoutX="413.0" layoutY="162.0" text="Apellido paterno:" />
@@ -31,12 +31,13 @@
       <TextField fx:id="textTelefono" layoutX="469.0" layoutY="386.0" prefHeight="27.0" prefWidth="180.0" />
       <Label layoutX="660.0" layoutY="391.0" text="Genero:" />
       <TextField fx:id="textGenero" layoutX="719.0" layoutY="386.0" prefHeight="27.0" prefWidth="150.0" />
-      <Button fx:id="botonAceptar" layoutX="301.0" layoutY="523.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="73.0" text="Aceptar" />
+      <Button fx:id="botonAceptar" layoutX="301.0" layoutY="523.0" mnemonicParsing="false" onAction="#registrarAlumno" prefHeight="42.0" prefWidth="73.0" text="Aceptar" />
       <Button fx:id="botonCancelar" layoutX="465.0" layoutY="523.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="105.0" text="Cancelar" />
       <Label layoutX="414.0" layoutY="22.0" text="Registrar alumno">
          <font>
             <Font size="23.0" />
          </font>
       </Label>
+      <Label layoutX="735.0" layoutY="268.0" text="&quot;DD/MM/YYYY&quot;" />
    </children>
 </AnchorPane>

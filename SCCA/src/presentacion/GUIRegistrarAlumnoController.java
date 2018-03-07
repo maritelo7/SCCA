@@ -13,7 +13,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import logica.AlumnoDAO;
-import persistencia.Alumno;
+import Persistencia.Alumno;
+import Persistencia.consultas.AlumnoCONS;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import javax.swing.JOptionPane;
 
 /**
  * FXML Controller class
@@ -52,16 +56,15 @@ public class GUIRegistrarAlumnoController implements Initializable {
     private Button botonCancelar;
     
     AlumnoDAO alumno = null;
-
+    
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
     }   
     
-    public Alumno obtenerInformación(){
+    public Alumno obtenerInformacion(){
         Alumno entidadAlumno = null;
-        AlumnoDAO alumnoDao = new AlumnoDAO();
         String nombre = textNombre.getText();
         String apellidoPat = textApellidoPat.getText();
         String apellidoMat = textApellidoMat.getText();
@@ -72,20 +75,49 @@ public class GUIRegistrarAlumnoController implements Initializable {
         String telefono = textTelefono.getText();
         String genero = textGenero.getText();
         Date fechaNac = obtenerFechaNac();
-        entidadAlumno = new Alumno(nombre, apellidoPat, apellidoMat, fechaNac, matricula,
-                carrera, area, correo, telefono, genero);
+        entidadAlumno = new Alumno(matricula, apellidoPat, correo, nombre, 
+                telefono, carrera, fechaNac, genero, area);
         
         return entidadAlumno;
      }
     
-    public Date obtenerFechaNac(){
-        Date date = null;
-        return date;
+     public Date obtenerFechaNac(){
+        String fecha = textFechaNac.getText();
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        Date fechaNac = null;
+        try {
+            fechaNac = formato.parse(fecha);
+        } 
+        catch (ParseException ex) 
+        {
+            System.out.println(ex);
+        }
+        return fechaNac;
     }
+    
+    
+    @FXML
+    public void registrarAlumno() {
+        AlumnoCONS alumno = new AlumnoCONS();
+        alumno.registrarAlumno(obtenerInformacion());
+        JOptionPane.showMessageDialog(null, "Operación realizada correctamente");
+    }
+    
     
     @FXML
     public void consultarAlumnoPorMatricula(){
+       
         
+    }
+    @FXML
+    public void consultarAlumno(){
+        AlumnoCONS alumnoCons = new AlumnoCONS();
+        boolean resultado = alumnoCons.validarMatricula(textMatricula.getText());
+        if(resultado==true){
+            System.out.println("Matricula existente, chido morro");
+        }else{
+            System.out.println("No existe :(");
+        }
     }
     
 }

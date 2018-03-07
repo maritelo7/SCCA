@@ -19,13 +19,13 @@ import javafx.stage.Stage;
 public class SCCA extends Application {
     
     @Override
-    public void start(Stage primaryStage) throws IOException {
-      FXMLLoader loader = new FXMLLoader(getClass().getResource("/presentacion/GUIPaginaInicio.fxml"));
+    public void start(Stage stage) throws IOException {
+      FXMLLoader loader = new FXMLLoader(getClass().getResource("/presentacion/GUIRegistrarAlumno.fxml"));
       Parent root = loader.load();
       Scene scene = new Scene(root);
-      primaryStage.setScene(scene);
-      primaryStage.setResizable(false);
-      primaryStage.show();
+      stage.setScene(scene);
+      stage.setResizable(false);
+      stage.show();
     }
 
     /**
