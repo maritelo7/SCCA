@@ -32,6 +32,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Bitacora.findAll", query = "SELECT b FROM Bitacora b")
     , @NamedQuery(name = "Bitacora.findByIdBitacora", query = "SELECT b FROM Bitacora b WHERE b.idBitacora = :idBitacora")
+    , @NamedQuery(name = "Bitacora.findByIdSeguimiento", query = "SELECT b FROM Bitacora b JOIN b.idSeguimiento s WHERE s = b.idSeguimiento and b.idSeguimiento = :idSeguimiento")
     , @NamedQuery(name = "Bitacora.findByFechaEntrega", query = "SELECT b FROM Bitacora b WHERE b.fechaEntrega = :fechaEntrega")
     , @NamedQuery(name = "Bitacora.findByCalificacionAutoevaluacion", query = "SELECT b FROM Bitacora b WHERE b.calificacionAutoevaluacion = :calificacionAutoevaluacion")
     , @NamedQuery(name = "Bitacora.findByModulo", query = "SELECT b FROM Bitacora b WHERE b.modulo = :modulo")

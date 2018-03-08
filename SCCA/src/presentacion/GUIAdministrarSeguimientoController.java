@@ -84,7 +84,7 @@ ObservableList<Bitacora> bitacoras = null;
   
   public void llenarTablaBitacoras(){
     BitacoraCONS consulta = new BitacoraCONS();
-   // bitacoras = FXCollections.observableList(consulta.recuperarBitacoras());
+    bitacoras = FXCollections.observableList(consulta.recuperarBitacoras());
     clmNo.setCellValueFactory(new PropertyValueFactory<>("numBitacora"));
     clmModulo.setCellValueFactory(new PropertyValueFactory<>("modulo"));
     clmSeccion.setCellValueFactory(new PropertyValueFactory<>("seccion"));
