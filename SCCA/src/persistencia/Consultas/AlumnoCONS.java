@@ -20,8 +20,13 @@ import javax.persistence.Persistence;
  * @author marianacro
  */
 public class AlumnoCONS {
-    EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("PUCRIS");
-    EntityManager entitymanager = emfactory.createEntityManager();
+    
+    EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("SCCAPUCRISTHIAN");;
+    EntityManager entitymanager = emfactory.createEntityManager();;
+
+    public AlumnoCONS() {
+       
+    }
     
     
     
@@ -51,10 +56,17 @@ public class AlumnoCONS {
         
     }
     
-    public List<Alumno> obtenerAlumnos(){
-        List<Alumno> alumnos ;
-        alumnos = (List<Alumno>) entitymanager.createNamedQuery("Alumno.findAll").getResultList();
-        return alumnos;
+    public Alumno obtenerAlumnos(String matricula){
+        AlumnoJpaController controller = new AlumnoJpaController(emfactory);
+        Alumno alumno = null;
+       // String parecido = "%" + matricula +"%";
+        
+        try{
+            alumno = controller.findAlumno(matricula);
+        }catch (Exception e) {
+
+        }
+        return alumno;
     }
     
 }
