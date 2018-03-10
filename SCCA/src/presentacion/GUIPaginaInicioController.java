@@ -57,6 +57,11 @@ public class GUIPaginaInicioController implements Initializable {
    @Override
    public void initialize(URL url, ResourceBundle rb) {
       // TODO
+       botonIngresar.setOnAction(event -> {
+           Stage stage = (Stage) botonIngresar.getScene().getWindow();
+           stage.close();
+       });
+      
       botonIngresar.setOnAction(event -> {
          String usuario = fieldUsuario.getText();
          String clave = fieldClave.getText();

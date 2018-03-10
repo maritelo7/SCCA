@@ -35,7 +35,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Coordinador.findByNombreUsuario", query = "SELECT c FROM Coordinador c WHERE c.nombreUsuario = :nombreUsuario")
     , @NamedQuery(name = "Coordinador.findByClaveUsuario", query = "SELECT c FROM Coordinador c WHERE c.claveUsuario = :claveUsuario")
     , @NamedQuery(name = "Coordinador.findByFechaFin", query = "SELECT c FROM Coordinador c WHERE c.fechaFin = :fechaFin")
-    , @NamedQuery(name = "Coordinador.findByFechaInicio", query = "SELECT c FROM Coordinador c WHERE c.fechaInicio = :fechaInicio")})
+    , @NamedQuery(name = "Coordinador.findByFechaInicio", query = "SELECT c FROM Coordinador c WHERE c.fechaInicio = :fechaInicio")
+    , @NamedQuery(name = "Coordinador.iniciarSesion", query = "SELECT c FROM Coordinador c WHERE c.nombreUsuario = :nombreUsuario AND c.claveUsuario =:claveUsuario")})
 public class Coordinador implements Serializable {
 
     private static final long serialVersionUID = 1L;

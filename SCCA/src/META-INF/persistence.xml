@@ -90,4 +90,34 @@
       <property name="eclipselink.canonicalmodel.subpackage" value="dev"/>
     </properties>
   </persistence-unit>
+   <persistence-unit name="SCCAPUMT" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>Persistencia.Reservacion</class>
+    <class>Persistencia.Bitacora</class>
+    <class>Persistencia.Aviso</class>
+    <class>Persistencia.Coordinador</class>
+    <class>Persistencia.Seccion</class>
+    <class>Persistencia.ConversacionHasSeguimiento</class>
+    <class>Persistencia.Recepcionista</class>
+    <class>Persistencia.ObservacionGeneral</class>
+    <class>Persistencia.Asesoria</class>
+    <class>Persistencia.Seguimiento</class>
+    <class>Persistencia.Inscripcion</class>
+    <class>Persistencia.Conversacion</class>
+    <class>Persistencia.ExperienciaEducativa</class>
+    <class>Persistencia.TallerHasSeguimiento</class>
+    <class>Persistencia.Taller</class>
+    <class>Persistencia.Asesor</class>
+    <class>Persistencia.HojaSeguimiento</class>
+    <class>Persistencia.Alumno</class>
+    <class>Persistencia.CatalogoEE</class>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/SCCA?zeroDateTimeBehavior=convertToNull"/>
+      <property name="javax.persistence.jdbc.user" value="adminSCCA"/>
+      <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+      <property name="javax.persistence.jdbc.password" value="MCMC18060716"/>
+      <property name="javax.persistence.schema-generation.database.action" value="create"/>
+      <property name="eclipselink.canonicalmodel.subpackage" value="dev"/>
+    </properties>
+  </persistence-unit>
 </persistence>

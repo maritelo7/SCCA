@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.141" fx:controller="presentacion.GUIConsultarAsesoresFXMLController">
+   <children>
+      <Label layoutX="50.0" layoutY="30.0" text="CONSULTAR ASESORES">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tableAsesores" layoutX="50.0" layoutY="174.0" prefHeight="300.0" prefWidth="800.0">
+        <columns>
+          <TableColumn fx:id="columnNumPersonal" prefWidth="123.0" text="Número de personal" />
+            <TableColumn fx:id="columnCorreo" prefWidth="329.0" text="Correo electrónico" />
+          <TableColumn fx:id="columnNombreCompleto" minWidth="3.0" prefWidth="347.66668701171875" text="Nombre completo" />
+        </columns>
+      </TableView>
+      <TextField fx:id="tFieldBuscarNumPersonal" layoutX="50.0" layoutY="101.0" prefHeight="25.0" prefWidth="627.0" />
+      <JFXButton fx:id="buttonBuscar" layoutX="707.0" layoutY="99.0" prefHeight="25.0" prefWidth="132.0" text="Buscar" />
+      <Label layoutX="50.0" layoutY="80.0" text="Busque un asesor por número de personal:" />
+      <Label layoutX="50.0" layoutY="149.0" text="De clic sobre el registro de un asesor para mostrar toda su información." />
+      <JFXButton fx:id="buttonRegistrar" layoutX="320.0" layoutY="504.0" prefHeight="25.0" prefWidth="243.0" text="Registrar un nuevo asesor" />
+      <JFXButton fx:id="buttonRegresar" layoutX="727.0" layoutY="535.0" prefHeight="25.0" prefWidth="123.0" text="Regresar" />
+   </children>
+</AnchorPane>
