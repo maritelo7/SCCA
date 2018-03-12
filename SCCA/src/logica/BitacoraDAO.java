@@ -19,8 +19,10 @@ public class BitacoraDAO {
   int seccion;
   int numBitacora;
   String observaciones;
+  int idSeguimiento;
 
-  public BitacoraDAO(int idBitacora, Date fechaEntrega, int calificacionAutoevaluacion, int modulo, int seccion, int numBitacora, String observaciones) {
+
+  public BitacoraDAO(int idBitacora, Date fechaEntrega, int calificacionAutoevaluacion, int modulo, int seccion, int numBitacora, String observaciones, int idSeguimiento) {
     this.idBitacora = idBitacora;
     this.fechaEntrega = fechaEntrega;
     this.calificacionAutoevaluacion = calificacionAutoevaluacion;
@@ -28,6 +30,7 @@ public class BitacoraDAO {
     this.seccion = seccion;
     this.numBitacora = numBitacora;
     this.observaciones = observaciones;
+    this.idSeguimiento = idSeguimiento;
   }
 
   public BitacoraDAO() {
@@ -87,6 +90,14 @@ public class BitacoraDAO {
 
   public void setObservaciones(String observaciones) {
     this.observaciones = observaciones;
+  }
+
+  public int getIdSeguimiento() {
+    return idSeguimiento;
+  }
+
+  public void setIdSeguimiento(int idSeguimiento) {
+    this.idSeguimiento = idSeguimiento;
   }
   
   

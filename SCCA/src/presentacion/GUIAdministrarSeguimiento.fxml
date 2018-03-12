@@ -5,6 +5,7 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentacion.GUIAdministrarSeguimientoController">
@@ -12,39 +13,42 @@
       <Label fx:id="idBitacora" layoutX="33.0" layoutY="34.0" text="Bitácoras" />
       <TableView fx:id="tableBitacoras" layoutX="32.0" layoutY="66.0" prefHeight="141.0" prefWidth="605.0">
         <columns>
-          <TableColumn fx:id="clmNo" prefWidth="38.0" text="No." />
-          <TableColumn fx:id="clmModulo" prefWidth="68.0" text="Módulo" />
-            <TableColumn fx:id="clmSeccion" prefWidth="64.0" text="Sección" />
-            <TableColumn fx:id="clmFecha" prefWidth="127.0" text="Fecha de entrega" />
-            <TableColumn fx:id="clmCalificacion" prefWidth="100.0" text="Calificación" />
-            <TableColumn fx:id="clmObservaciones" prefWidth="207.0" text="Observaciones" />
+          <TableColumn fx:id="clmNo" editable="false" prefWidth="38.0" text="No." />
+          <TableColumn fx:id="clmModulo" editable="false" prefWidth="68.0" text="Módulo" />
+            <TableColumn fx:id="clmSeccion" editable="false" prefWidth="64.0" text="Sección" />
+            <TableColumn fx:id="clmFecha" editable="false" prefWidth="127.0" text="Fecha de entrega" />
+            <TableColumn fx:id="clmCalificacion" editable="false" prefWidth="100.0" text="Calificación" />
+            <TableColumn fx:id="clmObservaciones" editable="false" prefWidth="207.0" text="Observaciones" />
         </columns>
       </TableView>
       <Label fx:id="idConversaciones" layoutX="33.0" layoutY="217.0" text="Conversaciones" />
       <TableView fx:id="tableConversaciones" layoutX="33.0" layoutY="243.0" prefHeight="120.0" prefWidth="280.0">
         <columns>
-          <TableColumn fx:id="clmNoConversaciones" prefWidth="55.0" text="No." />
-            <TableColumn fx:id="clmFechaConversaciones" prefWidth="224.0" text="Fecha" />
+          <TableColumn fx:id="clmNoConversaciones" editable="false" prefWidth="55.0" text="No." />
+            <TableColumn fx:id="clmFechaConversaciones" editable="false" prefWidth="224.0" text="Fecha" />
         </columns>
       </TableView>
       <Label fx:id="idTalleres" layoutX="35.0" layoutY="371.0" text="Talleres" />
       <TableView fx:id="tableTalleres" layoutX="33.0" layoutY="392.0" prefHeight="132.0" prefWidth="606.0">
         <columns>
-          <TableColumn fx:id="clmNoTalleres" prefWidth="55.20327377319336" text="No." />
-          <TableColumn fx:id="clmNombreTaller" prefWidth="316.80218505859375" text="Nombre del taller" />
-            <TableColumn minWidth="3.731842041015625" prefWidth="234.19781494140625" text="Fecha" />
+          <TableColumn fx:id="clmNoTalleres" editable="false" prefWidth="55.20327377319336" text="No." />
+          <TableColumn fx:id="clmNombreTaller" editable="false" prefWidth="316.80218505859375" text="Nombre del taller" />
+            <TableColumn editable="false" minWidth="3.731842041015625" prefWidth="234.19781494140625" text="Fecha" />
         </columns>
       </TableView>
       <Label fx:id="idObservacionesGenerales" layoutX="664.0" layoutY="35.0" text="Observaciones" />
       <TextArea fx:id="areaObservaciones" layoutX="666.0" layoutY="62.0" prefHeight="463.0" prefWidth="186.0" />
-      <Button fx:id="btnModificar" layoutX="255.0" layoutY="545.0" mnemonicParsing="false" text="Modificar seguimiento" />
+      <Button fx:id="btnModificar" layoutX="255.0" layoutY="545.0" mnemonicParsing="false" onAction="#crearVentana" text="Modificar seguimiento" />
       <Button fx:id="btnCancelar" layoutX="670.0" layoutY="545.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="181.0" text="Regresar" />
       <Label layoutX="362.0" layoutY="217.0" text="Asesorías" />
       <TableView layoutX="361.0" layoutY="239.0" prefHeight="126.0" prefWidth="277.0">
         <columns>
-          <TableColumn prefWidth="45.162628173828125" text="No." />
-          <TableColumn prefWidth="229.99996948242188" text="Asunto" />
+          <TableColumn editable="false" prefWidth="45.162628173828125" text="No." />
+          <TableColumn editable="false" prefWidth="229.99996948242188" text="Asunto" />
         </columns>
       </TableView>
+      <Label layoutX="110.0" layoutY="26.0" text="Ingrese el id de seguimiento del alumno: " />
+      <TextField fx:id="fieldSeguimiento" layoutX="375.0" layoutY="21.0" prefHeight="27.0" prefWidth="71.0" />
+      <Button fx:id="btnBuscar" layoutX="470.0" layoutY="21.0" mnemonicParsing="false" onAction="#buscarInformacion" text="Buscar" />
    </children>
 </AnchorPane>

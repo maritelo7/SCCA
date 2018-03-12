@@ -20,6 +20,8 @@ import Persistencia.Bitacora;
 import Persistencia.consultas.BitacoraCONS;
 import Persistencia.Conversacion;
 import Persistencia.Taller;
+import javafx.scene.control.TextField;
+import logica.BitacoraDAO;
 
 /**
  * FXML Controller class
@@ -30,56 +32,47 @@ public class GUIAdministrarSeguimientoController implements Initializable {
 
  @FXML
  private TableColumn<Bitacora, Integer> clmNo; 
- 
-@FXML
+ @FXML
  private TableColumn<Bitacora, Integer> clmModulo; 
-
 @FXML
  private TableColumn<Bitacora, Integer> clmSeccion;
-
 @FXML
  private TableColumn<Bitacora, String> clmFecha;
-
 @FXML
  private TableColumn<Bitacora, Integer> clmCalificacion; 
-
 @FXML
  private TableColumn<Bitacora, String> clmObservaciones; 
-
 @FXML 
 private TableView<Bitacora> tableBitacoras;
-
 @FXML
  private TableColumn<Bitacora, Integer> clmNoConversaciones; 
- 
-@FXML
+ @FXML
  private TableColumn<Bitacora, String> clmFechaConversaciones; 
-
 @FXML 
 private TableView<Conversacion> tableConversaciones;
-  
 @FXML
- private TableColumn<Bitacora, Integer> clmNoTalleres; 
-   
+private TableColumn<Bitacora, Integer> clmNoTalleres; 
 @FXML
- private TableColumn<Bitacora, String> clmNombreTaller; 
-
+private TableColumn<Bitacora, String> clmNombreTaller; 
 @FXML 
 private TableView<Taller> tableTalleres;
-
 @FXML
 private TextArea areaObservaciones;
-
 @FXML
 private Button btnModificar;
-
-@FXML Button btnCancelar;
+@FXML 
+private Button btnCancelar;
+@FXML
+private TextField fieldSeguimiento;
+@FXML 
+private Button btnBuscar;
+    
 
 ObservableList<Bitacora> bitacoras = null;
  
   @Override
   public void initialize(URL url, ResourceBundle rb) {
-    // TODO
+   llenarTablaBitacoras();
   }  
   
   public void llenarTablaBitacoras(){
@@ -93,4 +86,10 @@ ObservableList<Bitacora> bitacoras = null;
     clmObservaciones.setCellValueFactory(new PropertyValueFactory<>("observaciones"));
   }
   
+@FXML
+public void buscarInformacion(){
+  //BitacoraDAO bitacora = new BitacoraDAO(fieldSeguimiento.getText());
+
+   
+}
 }

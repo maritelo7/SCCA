@@ -5,12 +5,15 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import Persistencia.Bitacora;
+import Persistencia.controladores.BitacoraJpaController;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author marianacro
  */
 public class BitacoraCONS {
-    EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("SCCAPUCRISTHIAN");
+    EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("PUCRIS");
     EntityManager entitymanager = emfactory.createEntityManager();
     
     /**
@@ -22,8 +25,18 @@ public class BitacoraCONS {
   public List<Bitacora> recuperarBitacoras(){
     List<Bitacora> bitacoras;
     bitacoras = entitymanager.createNamedQuery("Bitacora.findByidSeguimiento").getResultList();
-    //System.out.println(bitacoras.get(0).toString());
+    System.out.println(bitacoras.get(0).toString());
     return bitacoras;
+  }
+  
+  public boolean registrarBitacora(Bitacora bitacora){
+    BitacoraJpaController controller = new BitacoraJpaController(emfactory);
+    try{
+      controller.create(bitacora);
+    }catch(Exception ex){
+       Logger.getLogger(BitacoraCONS.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    return true;
   }
     
 }

@@ -21,8 +21,8 @@ import javax.persistence.Persistence;
  */
 public class AlumnoCONS {
     
-    EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("SCCAPUCRISTHIAN");;
-    EntityManager entitymanager = emfactory.createEntityManager();;
+    EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("PUCRIS");
+    EntityManager entitymanager = emfactory.createEntityManager();
 
     public AlumnoCONS() {
        
