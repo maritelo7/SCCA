@@ -20,7 +20,7 @@ public class SCCA extends Application {
     
     @Override
     public void start(Stage stage) throws IOException {
-      FXMLLoader loader = new FXMLLoader(getClass().getResource("/presentacion/GUIModificarSeguimiento.fxml"));
+      FXMLLoader loader = new FXMLLoader(getClass().getResource("/presentacion/RegistrarAlumno.fxml"));
       Parent root = loader.load();
       Scene scene = new Scene(root);
       stage.setScene(scene);

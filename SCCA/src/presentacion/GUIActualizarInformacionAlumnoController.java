@@ -6,7 +6,7 @@
 package presentacion;
 
 import Persistencia.Alumno;
-import Persistencia.consultas.AlumnoCONS;
+import Consultas.AlumnoCONS;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import java.net.URL;

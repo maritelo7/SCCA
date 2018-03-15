@@ -14,12 +14,19 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import logica.AlumnoDAO;
 import Persistencia.Alumno;
-import Persistencia.consultas.AlumnoCONS;
+import Consultas.AlumnoCONS;
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
+import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 
 /**
@@ -135,11 +142,27 @@ public class GUIRegistrarAlumnoController implements Initializable {
     @FXML
     public void consultarAlumno(){
         AlumnoCONS alumnoCons = new AlumnoCONS();
-        boolean resultado = alumnoCons.validarMatricula(textMatricula.getText());
+        boolean resultado = alumnoCons.validarMatricula(textMatriculaConsultar.getText());
         if(resultado==true){
-            System.out.println("Matricula existente, chido morro");
+            try {
+                Stage stage = null;
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("ConsultarAlumno.fxml"));
+                Parent root = loader.load();
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.setResizable(false);
+                stage.show();
+            } catch (IOException ex) {
+                Logger.getLogger(GUIRegistrarAlumnoController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }else{
-            System.out.println("No existe :(");
+        Alert confirmacion = new Alert(Alert.AlertType.ERROR);
+        confirmacion.setTitle("Ventana emergente error");
+        confirmacion.setHeaderText(null);
+        confirmacion.setContentText("Contraseña no existente");
+        ButtonType btAceptar = new ButtonType("OK", ButtonBar.ButtonData.CANCEL_CLOSE);
+        confirmacion.getButtonTypes().setAll(btAceptar);
+        confirmacion.showAndWait();
         }
     }
     

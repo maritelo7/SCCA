@@ -16,7 +16,7 @@ import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import persistencia.Consultas.ObservacionesCONS;
+import Consultas.ObservacionesCONS;
 
 /**
  * FXML Controller class
