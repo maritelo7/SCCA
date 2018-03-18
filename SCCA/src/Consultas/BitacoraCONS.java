@@ -13,7 +13,7 @@ import java.util.logging.Logger;
  * @author marianacro
  */
 public class BitacoraCONS {
-    EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("PUCRIS");
+    EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("SCCAPU");
     EntityManager entitymanager = emfactory.createEntityManager();
     
     /**

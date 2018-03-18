@@ -28,6 +28,8 @@ import javafx.scene.control.ButtonType;
  * @author marianacro
  */
 public class GUIRegistrarAlumnoController implements Initializable {
+    
+    Boolean fechaValida = true;
 
     @FXML
     private TextField textMatriculaConsultar;
@@ -58,6 +60,9 @@ public class GUIRegistrarAlumnoController implements Initializable {
     @FXML
     private Button botonCancelar;
     
+    @FXML
+    private Button botonLimpiar;
+    
     AlumnoDAO alumno = null;
     
     
@@ -67,7 +72,7 @@ public class GUIRegistrarAlumnoController implements Initializable {
     }   
     
     public Alumno obtenerInformacion(){
-        Alumno entidadAlumno = null;
+        Alumno entidadAlumno;
         String nombre = textNombre.getText();
         String apellidoPat = textApellidoPat.getText();
         String apellidoMat = textApellidoMat.getText();
@@ -94,7 +99,14 @@ public class GUIRegistrarAlumnoController implements Initializable {
         } 
         catch (ParseException ex) 
         {
-            System.out.println(ex);
+        Alert fechaInvalida = new Alert(Alert.AlertType.INFORMATION);
+        fechaInvalida.setTitle("Ventana emergente error");
+        fechaInvalida.setHeaderText(null);
+        fechaInvalida.setContentText("Formato de fecha invalido, ingresela correctamente");
+        ButtonType btAceptar = new ButtonType("OK", ButtonBar.ButtonData.CANCEL_CLOSE);
+        fechaInvalida.getButtonTypes().setAll(btAceptar);
+        fechaInvalida.showAndWait();
+        fechaValida=false;
         }
         return fechaNac;
     }
@@ -102,6 +114,7 @@ public class GUIRegistrarAlumnoController implements Initializable {
     
     @FXML
     public void registrarAlumno() {
+        //if(fechaValida == false){
         if(textNombre.getText().equals("") || textApellidoPat.getText().equals("") ||
         textMatricula.getText().equals("") || textCarrera.getText().equals("") || 
         textArea.getText().equals("") || textCorreo.getText().equals("") || 
@@ -125,6 +138,7 @@ public class GUIRegistrarAlumnoController implements Initializable {
         confirmacion.showAndWait();
         }
         
+    //}
     }
     
   
@@ -135,22 +149,23 @@ public class GUIRegistrarAlumnoController implements Initializable {
         boolean resultado = alumnoCons.validarMatricula(matricula);
         if(resultado==true){
             cargarInformacionAlumno(matricula);
-            botonAceptar.setDisable(false);
+            botonAceptar.setDisable(true);
         }else{
         Alert confirmacion = new Alert(Alert.AlertType.ERROR);
         confirmacion.setTitle("Ventana emergente error");
         confirmacion.setHeaderText(null);
-        confirmacion.setContentText("Contraseña no existente");
+        confirmacion.setContentText("Matricula no existente");
         ButtonType btAceptar = new ButtonType("OK", ButtonBar.ButtonData.CANCEL_CLOSE);
         confirmacion.getButtonTypes().setAll(btAceptar);
         confirmacion.showAndWait();
+        botonAceptar.setDisable(false);
         }
     }
     
     public void cargarInformacionAlumno(String matricula) {
         AlumnoCONS alumnoCons = new AlumnoCONS();
-        AlumnoDAO alumno = new AlumnoDAO();
-        alumno = (AlumnoDAO) alumnoCons.obtenerInfoAlumno(matricula);
+        AlumnoDAO alumno;
+        alumno = (AlumnoDAO) alumnoCons.recuperarAlumno(matricula);
 
         textNombre.setText(alumno.getNombre());
         textApellidoPat.setText(alumno.getApellidoPat());
@@ -169,6 +184,23 @@ public class GUIRegistrarAlumnoController implements Initializable {
         
     }
     
+    @FXML
+    public void limpiarFormulario(){
+        textMatriculaConsultar.setText("");
+        textNombre.setText("");
+        textApellidoPat.setText("");
+        textApellidoMat.setText("");
+        textMatricula.setText("");
+        textCarrera.setText("");
+        textArea.setText("");
+        textCorreo.setText("");
+        textTelefono.setText("");
+        textGenero.setText("");
+        textFechaNac.setText("");
+        botonAceptar.setDisable(false);
+        
+        
+    }
     
     
 }

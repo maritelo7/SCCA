@@ -71,32 +71,19 @@ public class AlumnoCONS {
         return alumno;
     }
     
-    public List<Alumno> recuperarAlumno(String matricula) {
-        List<Alumno> alumno;
-        alumno = entitymanager.createNamedQuery("Alumno.findByMatricula").setParameter("matricula", matricula).getResultList();
-        return alumno;
+    public AlumnoDAO recuperarAlumno(String matricula) {
+        Alumno alumno = null;
+        AlumnoDAO alumnoDAO = null;
+        alumno = (Alumno) entitymanager.createNamedQuery("Alumno.findByMatricula").setParameter("matricula", 
+                matricula).getResultList().get(0);
+        alumnoDAO = new AlumnoDAO(alumno.getNombre(), alumno.getApellidoPaterno(), 
+            alumno.getApellidoMaterno(), alumno.getFechaNacimiento(),
+            alumno.getMatricula(),alumno.getCarrera(),alumno.getArea(), 
+            alumno.getCorreo(),alumno.getTelefono(), alumno.getGenero());
+        return alumnoDAO;
     }
 
-    public List<AlumnoDAO> obtenerInfoAlumno(String matricula) {
-        List<AlumnoDAO> alumnoDAO = new ArrayList<>();
-        List<Alumno> alumno = recuperarAlumno(matricula);
-        for (int i = 0; i < alumno.size(); i++) {
-            AlumnoDAO alumnoObjeto = new AlumnoDAO();
-            alumnoObjeto.setMatricula(alumno.get(i).getMatricula());
-            alumnoObjeto.setApellidoMat(alumno.get(i).getApellidoMaterno());
-            alumnoObjeto.setApellidoPat(alumno.get(i).getApellidoPaterno());
-            alumnoObjeto.setNombre(alumno.get(i).getNombre());
-            alumnoObjeto.setCorreo(alumno.get(i).getCorreo());
-            alumnoObjeto.setTelefono(alumno.get(i).getTelefono());
-            alumnoObjeto.setCarrera(alumno.get(i).getCarrera());
-            alumnoObjeto.setFechaNac(alumno.get(i).getFechaNacimiento());
-            alumnoObjeto.setGenero(alumno.get(i).getGenero());
-            alumnoObjeto.setArea(alumno.get(i).getArea());
-            
-            alumnoDAO.add(alumnoObjeto);
-        }
-            return alumnoDAO;
-    }
+   
     
     
     

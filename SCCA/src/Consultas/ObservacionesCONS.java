@@ -19,7 +19,7 @@ import javax.persistence.Persistence;
  */
 public class ObservacionesCONS {
 
-  EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("PUCRIS");
+  EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("SCCAPU");
   EntityManager entitymanager = emfactory.createEntityManager();
 
   public ObservacionesCONS() {
