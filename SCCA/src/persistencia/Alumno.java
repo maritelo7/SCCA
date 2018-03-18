@@ -96,6 +96,18 @@ public class Alumno implements Serializable {
         this.genero = genero;
         this.area = area;
     }
+        public Alumno(String matricula, String apellidoPaterno, String apellidoMaterno, String correo, String nombre, String telefono, String carrera, Date fechaNacimiento, String genero, String area) {
+        this.matricula = matricula;
+        this.apellidoPaterno = apellidoPaterno;
+        this.apellidoMaterno = apellidoMaterno;
+        this.correo = correo;
+        this.nombre = nombre;
+        this.telefono = telefono;
+        this.carrera = carrera;
+        this.fechaNacimiento = fechaNacimiento;
+        this.genero = genero;
+        this.area = area;
+    }
 
     public String getMatricula() {
         return matricula;

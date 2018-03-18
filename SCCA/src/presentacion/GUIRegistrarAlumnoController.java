@@ -15,19 +15,12 @@ import javafx.scene.control.TextField;
 import logica.AlumnoDAO;
 import Persistencia.Alumno;
 import Consultas.AlumnoCONS;
-import java.io.IOException;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
-import javafx.stage.Stage;
-import javax.swing.JOptionPane;
 
 /**
  * FXML Controller class
@@ -85,11 +78,12 @@ public class GUIRegistrarAlumnoController implements Initializable {
         String telefono = textTelefono.getText();
         String genero = textGenero.getText();
         Date fechaNac = obtenerFechaNac();
-        entidadAlumno = new Alumno(matricula, apellidoPat, correo, nombre, 
+        entidadAlumno = new Alumno(matricula, apellidoPat, apellidoMat, correo, nombre, 
                 telefono, carrera, fechaNac, genero, area);
         
         return entidadAlumno;
      }
+    
     
      public Date obtenerFechaNac(){
         String fecha = textFechaNac.getText();
@@ -133,28 +127,15 @@ public class GUIRegistrarAlumnoController implements Initializable {
         
     }
     
-    
-    @FXML
-    public void consultarAlumnoPorMatricula(){
-       
-        
-    }
+  
     @FXML
     public void consultarAlumno(){
         AlumnoCONS alumnoCons = new AlumnoCONS();
-        boolean resultado = alumnoCons.validarMatricula(textMatriculaConsultar.getText());
+        String matricula = textMatriculaConsultar.getText();
+        boolean resultado = alumnoCons.validarMatricula(matricula);
         if(resultado==true){
-            try {
-                Stage stage = null;
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("ConsultarAlumno.fxml"));
-                Parent root = loader.load();
-                Scene scene = new Scene(root);
-                stage.setScene(scene);
-                stage.setResizable(false);
-                stage.show();
-            } catch (IOException ex) {
-                Logger.getLogger(GUIRegistrarAlumnoController.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            cargarInformacionAlumno(matricula);
+            botonAceptar.setDisable(false);
         }else{
         Alert confirmacion = new Alert(Alert.AlertType.ERROR);
         confirmacion.setTitle("Ventana emergente error");
@@ -164,6 +145,28 @@ public class GUIRegistrarAlumnoController implements Initializable {
         confirmacion.getButtonTypes().setAll(btAceptar);
         confirmacion.showAndWait();
         }
+    }
+    
+    public void cargarInformacionAlumno(String matricula) {
+        AlumnoCONS alumnoCons = new AlumnoCONS();
+        AlumnoDAO alumno = new AlumnoDAO();
+        alumno = (AlumnoDAO) alumnoCons.obtenerInfoAlumno(matricula);
+
+        textNombre.setText(alumno.getNombre());
+        textApellidoPat.setText(alumno.getApellidoPat());
+        textApellidoMat.setText(alumno.getApellidoMat());
+        textMatricula.setText(alumno.getMatricula());
+        textCarrera.setText(alumno.getCarrera());
+        textArea.setText(alumno.getArea());
+        textCorreo.setText(alumno.getCorreo());
+        textTelefono.setText(alumno.getTelefono());
+        textGenero.setText(alumno.getGenero());
+        Date date = new Date();
+        DateFormat fecha = new SimpleDateFormat("dd/MM/yyyy");
+        String fechaObtenida = fecha.format(date);
+        textFechaNac.setText(fechaObtenida);
+     
+        
     }
     
     

@@ -7,7 +7,9 @@ package presentacion;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import logica.RecepcionistaDAO;
 
 /**
@@ -16,17 +18,21 @@ import logica.RecepcionistaDAO;
  * @author marianacro
  */
 public class GUIMenuPrincipalRecepcionistaController implements Initializable {
-RecepcionistaDAO recepcionista;
+    RecepcionistaDAO recepcionista;
+
+    @FXML
+    private Button botonAdminSeguimiento;
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
-    
-    public void cargarCuenta(RecepcionistaDAO recepcionista) {
+    }
+
+ public void cargarCuenta(RecepcionistaDAO recepcionista) {
       this.recepcionista = recepcionista;
-   }
+   }    
     
 }

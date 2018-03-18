@@ -7,26 +7,36 @@ package presentacion;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import logica.AsesorDAO;
 import logica.CoordinadorDAO;
 
 /**
  * FXML Controller class
  *
- * @author Mari
+ * @author marianacro
  */
 public class GUIMenuPrincipalCoordinadorController implements Initializable {
-   CoordinadorDAO coordinador;
-   /**
-    * Initializes the controller class.
-    */
-   @Override
-   public void initialize(URL url, ResourceBundle rb) {
-      // TODO
-   }   
-   
-   public void cargarCuenta(CoordinadorDAO coordinador) {
+
+    @FXML
+    private Button botonAdministrarAsesor;
+    @FXML
+    private Button botonEditarAlumno;
+    @FXML
+    private Button botonRegistrarAlumno;
+
+    /**
+     * Initializes the controller class.
+     */
+    CoordinadorDAO coordinador;
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        // TODO
+    }    
+    
+    public void cargarCuenta(CoordinadorDAO coordinador) {
       this.coordinador = coordinador;
    }
-   
 }
