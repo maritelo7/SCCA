@@ -106,7 +106,6 @@ public class GUIRegistrarAlumnoController implements Initializable {
         ButtonType btAceptar = new ButtonType("OK", ButtonBar.ButtonData.CANCEL_CLOSE);
         fechaInvalida.getButtonTypes().setAll(btAceptar);
         fechaInvalida.showAndWait();
-        fechaValida=false;
         }
         return fechaNac;
     }
@@ -114,7 +113,7 @@ public class GUIRegistrarAlumnoController implements Initializable {
     
     @FXML
     public void registrarAlumno() {
-        //if(fechaValida == false){
+        
         if(textNombre.getText().equals("") || textApellidoPat.getText().equals("") ||
         textMatricula.getText().equals("") || textCarrera.getText().equals("") || 
         textArea.getText().equals("") || textCorreo.getText().equals("") || 
@@ -138,7 +137,7 @@ public class GUIRegistrarAlumnoController implements Initializable {
         confirmacion.showAndWait();
         }
         
-    //}
+
     }
     
   
